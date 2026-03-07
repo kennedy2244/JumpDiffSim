@@ -16,17 +16,5 @@
 hello <- function() {
   print("Hello, world!")
 }
+hello()
 
-install.packages("rmarkdown")
-install.packages(c("devtools",
-                   "usethis",
-                   "roxygen2",
-                   "testthat",
-                   "covr",
-                   "lintr",
-                   "spelling",
-                   "urlchecker",
-                   "ggplot2",
-                   "numDeriv",
-                   "knitr"
-                   ))

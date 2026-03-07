@@ -1,22 +1,38 @@
 Package: JumpDiffSim
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Jump Diffusion Simulation and Calibration for Merton and Kou Models
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Jane", "Doe",
-      email = "jane@example.com",
-      role = c("aut", "cre")
+      given = c ("Kennedy", "Titus"),
+      family = "Kayaki",
+      email = "kennedy_2244@yu.ac.kr",
+      role = c("aut", "cre")),
+    person (given = "Oh", family = "DoHyun", role = "aut"),
+    person (given = "Ju Seong", family = "Nyeon", role = "aut"),
+    person (given = "Lee", family = "Se Eun", role = "aut"),
+    person (given = "Choi", family = "Jiwoo", role = "aut")
     )
-  )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
+Description: Provides exact compound-Poisson simulation and maximum likelihood estimation for the Merton (1976) log-normal jump-diffusion model and the Kou (2002) double-exponential jump-diffusion model.
+      A unified S4 class hierarchy exposes calibrate(), simulate(), and
+      diagnostic methods for both models. All examples run offline using 
+      the included synthetic data generator.
 License: GPL (>= 3)
 Encoding: UTF-8
-LazyData: true
-Suggests: 
+Roxygen: list (markdown = TRUE)
+RoxygenNote: 7.3.3
+Depends: R (>= 4.1.0)
+Imports:
+    methods,
+    stats,
+    ggplot2 (>= 4.0.2),
+    numDeriv (>= 2016.8.1.1)
+Suggests:
     knitr,
     rmarkdown,
+    covr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+URL: https://github.com/kennedy2244/JumpDiffSim
+BugReports: https://github.com/kennedy2244/JumpDiffSim/issues

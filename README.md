@@ -2,6 +2,7 @@
 # JumpDiffSim
 
 <!-- badges: start -->
+[![Codecov test coverage](https://codecov.io/gh/kennedy2244/JumpDiffSim/graph/badge.svg)](https://app.codecov.io/gh/kennedy2244/JumpDiffSim)
 <!-- badges: end -->
 
 The goal of JumpDiffSim is to ...
