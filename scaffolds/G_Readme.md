@@ -3,6 +3,29 @@
 This folder contains ready-to-use code files for each team member.
 They exist to avoid copy-paste errors from the PDF tutorial.
 
+---
+
+> **IMPORTANT — Scaffold files vs the PDF tutorial**
+>
+> You may notice that the code in these scaffold files looks slightly
+> different from the code shown in the tutorial PDF. This is intentional.
+>
+> **Always use the scaffold file. Never copy from the PDF.**
+>
+> The scaffold files contain:
+> - **Corrected code** — bugs found in the original PDF have been fixed
+>   (for example: parameter names with spaces, escaped underscores from
+>   LaTeX formatting that break R code when pasted directly)
+> - **Complete code** — full roxygen2 documentation, all required tags,
+>   and helper functions placed in the correct order
+> - **Production-ready code** — exactly what needs to go into the package
+>
+> The PDF tutorial is for **reading and understanding the concepts only**.
+> If there is ever a conflict between the PDF and your scaffold file,
+> **the scaffold file is correct**.
+
+---
+
 ## How to use your scaffold file
 
 1. Find your file in the table below
