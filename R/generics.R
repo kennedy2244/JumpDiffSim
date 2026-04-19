@@ -1,6 +1,5 @@
 #' @import methods
-#' @importFrom stats dnorm dpois optim qnorm quantile median density lag
-#' @importFrom stats simulate
+#' @importFrom stats simulate dnorm dpois optim qnorm quantile median density lag
 #' @importFrom numDeriv hessian
 #' @importFrom ggplot2 ggplot aes geom_line geom_ribbon geom_histogram
 #'   geom_density geom_col geom_hline labs theme_minimal after_stat
