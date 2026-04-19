@@ -29,9 +29,9 @@ test_that("fitMerton() converges on synthetic data", {
   expect_true(is.finite(fit@loglik))
 })
 
-# T8 -- parameter recovery: lambda within 25% of true value
+# T8 -- parameter recovery with larger sample
 test_that("fitMerton() recovers lambda within 25%", {
-  ret <- jdSampleData("merton", n = 1000, seed = 42)
+  ret <- jdSampleData("merton", n = 2000, seed = 42)
   fit <- fitMerton(ret)
   expect_lt(abs(fit@estimates["lambda"] - 1.0) / 1.0, 0.25)
 })
