@@ -1,3 +1,23 @@
+# ============================================================
+# JumpDiffTrial -- Student Scaffold
+# Member  : Kennedy Kayaki (A)
+# Role    : Package Lead + Estimation Module
+# Files   : R/merton_fit.R  |  R/utils.R
+# Branch  : feature/kennedy-estimation
+# Week    : Week 2, Days 2-5
+# ============================================================
+# INSTRUCTIONS:
+#   1. Open R/merton_fit.R in RStudio
+#   2. Copy SECTION 1 and SECTION 2 into that file
+#   3. Open R/utils.R and copy SECTION 3 into that file
+#   4. Run devtools::load_all() after each section
+#   5. Run the verification block at the bottom when done
+# ============================================================
+
+
+# ── SECTION 1: Internal log-density helper ──────────────────
+# Copy this into R/merton_fit.R  (MUST come first in the file)
+
 # Internal: log-likelihood contribution for one observation
 # Not exported -- for use by mertonLogLik() only
 .merton_logdens <- function(r, dt, mu, sigma, lambda,
@@ -12,6 +32,10 @@
   m <- max(log_terms)
   m + log(sum(exp(log_terms - m)))   # log-sum-exp for stability
 }
+
+
+# ── SECTION 2: Exported estimation functions ─────────────────
+# Copy this into R/merton_fit.R  (paste below Section 1)
 
 #' Negative Log-Likelihood for the Merton Jump-Diffusion Model
 #'
@@ -30,11 +54,9 @@
 #'   invalid parameter values.
 #'
 #' @examples
-#' \dontrun{
 #' ret <- jdSampleData("merton", n = 200, seed = 42)
 #' p   <- c(mu = 0.05, sigma = 0.2, lambda = 1, mu_j = -0.1, sigma_j = 0.15)
 #' mertonLogLik(p, ret)
-#' }
 #'
 #' @export
 mertonLogLik <- function(params, log_returns, dt = 1/252, N_max = 50L) {
@@ -75,12 +97,10 @@ mertonLogLik <- function(params, log_returns, dt = 1/252, N_max = 50L) {
 #' @return A \linkS4class{JDFitResult} object.
 #'
 #' @examples
-#' \dontrun{
 #' ret <- jdSampleData("merton", n = 500, seed = 42)
 #' fit <- fitMerton(ret, verbose = TRUE)
 #' print(fit)
 #' confint(fit)
-#' }
 #'
 #' @importFrom stats optim
 #' @importFrom numDeriv hessian
@@ -150,3 +170,69 @@ setMethod("confint", "JDFitResult",
             out
           }
 )
+
+
+# ── SECTION 3: Utility functions ─────────────────────────────
+# Copy this into R/utils.R
+
+#' Theoretical Moments of the Merton Jump-Diffusion Log-Return
+#'
+#' @description
+#' Returns the theoretical mean, variance, skewness, and excess kurtosis
+#' of the log-return distribution under the Merton (1976) model.
+#'
+#' @param object A \linkS4class{MertonModel} object.
+#' @return Named numeric vector with elements
+#'   \code{mean}, \code{variance}, \code{skewness}, \code{kurtosis}.
+#'
+#' @examples
+#' m <- MertonModel(mu = 0.05, sigma = 0.20, lambda = 1,
+#'                  mu_j = -0.10, sigma_j = 0.15)
+#' jumpMoments(m)
+#'
+#' @export
+setMethod("jumpMoments", "MertonModel", function(object) {
+  mu      <- object@mu
+  sigma   <- object@sigma
+  lambda  <- object@lambda
+  mu_j    <- object@mu_j
+  sigma_j <- object@sigma_j
+
+  # Per unit time (dt = 1)
+  mean_r   <- mu - 0.5 * sigma^2 - lambda * mu_j + lambda * mu_j
+  var_r    <- sigma^2 + lambda * (mu_j^2 + sigma_j^2)
+  skew_r   <- lambda * (mu_j^3 + 3 * mu_j * sigma_j^2) / var_r^1.5
+  kurt_r   <- lambda * (mu_j^4 + 6 * mu_j^2 * sigma_j^2 +
+                          3 * sigma_j^4) / var_r^2
+
+  c(mean     = mean_r,
+    variance = var_r,
+    skewness = skew_r,
+    kurtosis = kurt_r)   # excess kurtosis from jump component
+})
+
+
+# ── VERIFICATION: Run this after devtools::load_all() ────────
+# Copy these lines into the R Console tab (not into any R/ file)
+
+if (FALSE) {
+  devtools::load_all()
+
+  # Test mertonLogLik
+  ret <- jdSampleData("merton", n = 200, seed = 42)
+  p   <- c(mu = 0.05, sigma = 0.20, lambda = 1,
+           mu_j = -0.1, sigma_j = 0.15)
+  ll  <- mertonLogLik(p, ret)
+  cat("mertonLogLik:", ll, "\n")           # should be a finite positive number
+
+  # Test fitMerton
+  ret2 <- jdSampleData("merton", n = 500, seed = 42)
+  fit  <- fitMerton(ret2, verbose = TRUE)
+  print(fit)
+  print(confint(fit))
+
+  # Test jumpMoments
+  m <- MertonModel(mu = 0.05, sigma = 0.20, lambda = 1,
+                   mu_j = -0.10, sigma_j = 0.15)
+  print(jumpMoments(m))
+}

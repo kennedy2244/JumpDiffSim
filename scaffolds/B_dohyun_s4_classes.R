@@ -1,3 +1,77 @@
+# ============================================================
+# JumpDiffTrial -- Student Scaffold
+# Member  : Oh Dohyun (B)
+# Role    : S4 Architect
+# Files   : R/generics.R  |  R/merton_model.R
+# Branch  : feature/dohyun-s4-classes
+# Week    : Week 1 (design) + Week 2 (methods)
+# ============================================================
+# INSTRUCTIONS:
+#   1. Open R/generics.R and copy SECTION 1 into it
+#   2. Open R/merton_model.R and copy SECTION 2 into it
+#   3. Run devtools::load_all() after each section
+#   4. Run the verification block at the bottom when done
+# ============================================================
+
+
+# ── SECTION 1: Generic functions ─────────────────────────────
+# Copy this into R/generics.R
+
+#' @import methods
+NULL
+
+# -- Generic: simulate ------------------------------------------
+#' Simulate Asset Price Paths
+#'
+#' @param object A \linkS4class{JumpDiffModel} object.
+#' @param n      Integer. Number of simulated paths.
+#' @param T_     Positive numeric. Time horizon in years.
+#' @param steps  Positive integer. Number of time steps.
+#' @param seed   Optional integer seed for reproducibility.
+#' @param ...    Additional arguments passed to methods.
+#' @return A \linkS4class{JDSimResult} object.
+#' @export
+setGeneric("simulate",
+           function(object, n, T_, steps, seed = NULL, ...)
+             standardGeneric("simulate"))
+
+# -- Generic: loglik --------------------------------------------
+#' Compute Negative Log-Likelihood
+#'
+#' @param object      A \linkS4class{JumpDiffModel} object.
+#' @param log_returns Numeric vector of log asset returns.
+#' @param ...         Passed to methods.
+#' @return Scalar negative log-likelihood value.
+#' @export
+setGeneric("loglik",
+           function(object, log_returns, ...)
+             standardGeneric("loglik"))
+
+# -- Generic: fit -----------------------------------------------
+#' Fit Model to Log-Returns via MLE
+#'
+#' @param object      A \linkS4class{JumpDiffModel} object.
+#' @param log_returns Numeric vector of observed log returns.
+#' @param ...         Passed to \code{\link[stats]{optim}}.
+#' @return A \linkS4class{JDFitResult} object.
+#' @export
+setGeneric("fit",
+           function(object, log_returns, ...)
+             standardGeneric("fit"))
+
+# -- Generic: jumpMoments ---------------------------------------
+#' Theoretical Moments of the Log-Return Distribution
+#'
+#' @param object A \linkS4class{JumpDiffModel} object.
+#' @return Named numeric vector: mean, variance, skewness, kurtosis.
+#' @export
+setGeneric("jumpMoments",
+           function(object) standardGeneric("jumpMoments"))
+
+
+# ── SECTION 2: S4 class definitions ──────────────────────────
+# Copy this into R/merton_model.R
+
 # -- Virtual base class -----------------------------------------
 #' JumpDiffModel: Virtual Base Class for Jump-Diffusion Models
 #'
@@ -81,7 +155,6 @@ MertonModel <- function(mu      =  0.05,
 
 # -- show() method for MertonModel -----------------------------
 #' @rdname MertonModel-class
-#' @param object A \linkS4class{MertonModel} object.
 #' @export
 setMethod("show", "MertonModel", function(object) {
   cat("Merton Jump-Diffusion Model\n")
@@ -135,7 +208,6 @@ setClass("JDFitResult",
 
 # -- show() method for JDFitResult ----------------------------
 #' @rdname JDFitResult-class
-#' @param object A \linkS4class{JDFitResult} object.
 #' @export
 setMethod("show", "JDFitResult", function(object) {
   cat("Merton MLE Fit Result\n")
@@ -149,3 +221,20 @@ setMethod("show", "JDFitResult", function(object) {
   }
   invisible(object)
 })
+
+
+# ── VERIFICATION: Run in R Console tab only ──────────────────
+if (FALSE) {
+  devtools::load_all()
+
+  # Valid constructor
+  m <- MertonModel()
+  show(m)
+  cat("Is MertonModel:", is(m, "MertonModel"), "\n")
+  cat("Is JumpDiffModel:", is(m, "JumpDiffModel"), "\n")
+
+  # Validity guards
+  tryCatch(MertonModel(sigma = -0.1), error = function(e) cat("sigma guard OK\n"))
+  tryCatch(MertonModel(lambda = -1),  error = function(e) cat("lambda guard OK\n"))
+  tryCatch(MertonModel(sigma_j = 0),  error = function(e) cat("sigma_j guard OK\n"))
+}

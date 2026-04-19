@@ -21,6 +21,15 @@ License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list (markdown = TRUE)
 RoxygenNote: 7.3.3
+Collate:
+    'generics.R'
+    'kou_fit.R'
+    'kou_model.R'
+    'kou_sim.R'
+    'merton_model.R'
+    'merton_fit.R'
+    'merton_sim.R'
+    'utils.R'
 Depends: R (>= 4.1.0)
 Imports:
     methods,

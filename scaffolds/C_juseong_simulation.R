@@ -1,7 +1,22 @@
-utils::globalVariables(c(
-  "q05", "q25", "median", "q75", "q95",
-  "r","quantile", "density", "lag", "acf", "t"
-))
+# ============================================================
+# JumpDiffTrial -- Student Scaffold
+# Member  : Ju Seong Nyeon (C)
+# Role    : Simulation Engine
+# Files   : R/merton_sim.R
+# Branch  : feature/juseong-simulation
+# Week    : Week 2, Days 1-4
+# ============================================================
+# INSTRUCTIONS:
+#   1. Open R/merton_sim.R in RStudio
+#   2. Copy ALL sections below into that file in order
+#   3. Run devtools::load_all() after pasting
+#   4. Run the verification block at the bottom when done
+# ============================================================
+
+
+# ── SECTION 1: Internal step functions ───────────────────────
+# These are internal helpers -- not exported, no @export tag
+
 # One-step exact compound-Poisson simulation
 # Returns a single log-return for time step dt
 .merton_step <- function(mu, sigma, lambda, mu_j, sigma_j,
@@ -40,6 +55,9 @@ utils::globalVariables(c(
   }
   prices
 }
+
+
+# ── SECTION 2: simulateMerton() -- exported ──────────────────
 
 #' Simulate Merton Jump-Diffusion Asset Paths
 #'
@@ -93,6 +111,9 @@ simulateMerton <- function(object, n = 100, T_ = 1, steps = 252,
       model_type = "Merton")
 }
 
+
+# ── SECTION 3: jdSampleData() -- exported ────────────────────
+
 #' Generate Synthetic Log-Returns from a Jump-Diffusion Model
 #'
 #' @description
@@ -134,21 +155,22 @@ jdSampleData <- function(model   = "merton",
   replicate(n, .merton_step(mu, sigma, lambda, mu_j, sigma_j, dt))
 }
 
+
+# ── SECTION 4: diagnosticPlots() -- exported ─────────────────
+
 #' Diagnostic Plots for a JDSimResult Object
 #'
 #' @description
-#' Creates three diagnostic plots for a \linkS4class{JDSimResult} object:
-#' a simulated path fan chart, a histogram of log-returns with a normal
-#' density overlay, and the autocorrelation function of squared log-returns.
+#' Returns a named list of three \pkg{ggplot2} objects:
+#' \describe{
+#'   \item{\code{fan_chart}}{Simulated path quantile fan (5\%, 25\%,
+#'     median, 75\%, 95\%).}
+#'   \item{\code{density}}{Histogram of terminal log-returns vs normal.}
+#'   \item{\code{acf_sq}}{ACF of squared log-returns with 95\% CI.}
+#' }
 #'
 #' @param object A \linkS4class{JDSimResult} object.
-#'
-#' @return A named list of three \code{ggplot} objects:
-#' \itemize{
-#'   \item \code{fan_chart}: simulated path quantile fan chart.
-#'   \item \code{density}: histogram of log-returns with a normal overlay.
-#'   \item \code{acf_sq}: autocorrelation of squared log-returns with 95\% bounds.
-#' }
+#' @return Named list of three \code{ggplot} objects.
 #'
 #' @examples
 #' m    <- MertonModel()
@@ -158,13 +180,22 @@ jdSampleData <- function(model   = "merton",
 #' print(plts$density)
 #' print(plts$acf_sq)
 #'
-#' @importFrom stats acf dnorm sd quantile
+#' @importFrom ggplot2 ggplot aes geom_line geom_ribbon geom_histogram
+#'   geom_density geom_col geom_hline labs theme_minimal after_stat
+#' @importFrom stats acf dnorm sd
+#' @importFrom utils globalVariables
 #' @export
 diagnosticPlots <- function(object) {
+
+  utils::globalVariables(c("t", "r", "lag", "acf",
+                           "q05", "q25", "median", "q75", "q95"))
+
   paths <- object@paths
   times <- object@times
+  n     <- nrow(paths)
 
-  qs <- apply(paths, 2, stats::quantile,
+  # --- Fan chart ---------------------------------------------------
+  qs <- apply(paths, 2, quantile,
               probs = c(0.05, 0.25, 0.50, 0.75, 0.95), na.rm = TRUE)
   df_fan <- data.frame(
     t      = times,
@@ -185,6 +216,7 @@ diagnosticPlots <- function(object) {
                   x = "Time (years)", y = "Asset price") +
     ggplot2::theme_minimal()
 
+  # --- Return density vs Normal ------------------------------------
   log_ret <- as.vector(diff(t(log(paths))))
   df_ret  <- data.frame(r = log_ret)
 
@@ -200,6 +232,7 @@ diagnosticPlots <- function(object) {
                   x = "Log-return", y = "Density") +
     ggplot2::theme_minimal()
 
+  # --- ACF of squared log-returns ----------------------------------
   acf_obj  <- acf(log_ret^2, lag.max = 30, plot = FALSE)
   ci_bound <- qnorm(0.975) / sqrt(length(log_ret))
   df_acf   <- data.frame(
@@ -217,4 +250,29 @@ diagnosticPlots <- function(object) {
     ggplot2::theme_minimal()
 
   list(fan_chart = p1, density = p2, acf_sq = p3)
+}
+
+
+# ── VERIFICATION: Run in R Console tab only ──────────────────
+if (FALSE) {
+  devtools::load_all()
+
+  # Test simulateMerton dimensions
+  m   <- MertonModel()
+  sim <- simulateMerton(m, n = 50, T_ = 1, steps = 100, seed = 42)
+  cat("Paths dim:", dim(sim@paths), "\n")      # should be 50 x 101
+
+  # Test reproducibility
+  sim1 <- simulateMerton(m, n = 20, T_ = 1, steps = 50, seed = 7)
+  sim2 <- simulateMerton(m, n = 20, T_ = 1, steps = 50, seed = 7)
+  cat("Reproducible:", identical(sim1@paths, sim2@paths), "\n")  # TRUE
+
+  # Test jdSampleData
+  ret <- jdSampleData("merton", n = 200, seed = 42)
+  cat("Sample data length:", length(ret), "\n")   # 200
+
+  # Test diagnosticPlots
+  plts <- diagnosticPlots(sim)
+  cat("Plot names:", names(plts), "\n")   # fan_chart density acf_sq
+  print(plts$fan_chart)
 }
