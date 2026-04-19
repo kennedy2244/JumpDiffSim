@@ -9,12 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-<<<<<<< HEAD
-
-```{r, include = FALSE}
-=======
-```{r setup, include=FALSE}
->>>>>>> dev
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment  = "#>",
@@ -26,16 +21,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-<<<<<<< HEAD
-
-
-```{r simulate}
-library(JumpDiffSim)
-
-
-```
-
-=======
 ## 1. Why Jump-Diffusion?
 
 Standard Geometric Brownian Motion (GBM) assumes that log-returns are
@@ -156,5 +141,3 @@ jump-diffusion specification.
   discontinuous. *Journal of Financial Economics*, 3(1-2), 125-144.
 - Wickham, H. and Bryan, J. (2023). *R Packages* (2nd ed.). O'Reilly Media.
   <https://r-pkgs.org/>
-
->>>>>>> dev
