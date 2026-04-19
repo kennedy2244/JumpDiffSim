@@ -1,3 +1,7 @@
+utils::globalVariables(c(
+  "q05", "q25", "median", "q75", "q95",
+  "r","quantile", "density", "lag", "acf", "t"
+))
 # One-step exact compound-Poisson simulation
 # Returns a single log-return for time step dt
 .merton_step <- function(mu, sigma, lambda, mu_j, sigma_j,
@@ -133,16 +137,18 @@ jdSampleData <- function(model   = "merton",
 #' Diagnostic Plots for a JDSimResult Object
 #'
 #' @description
-#' Returns a named list of three \pkg{ggplot2} objects:
-#' \describe{
-#'   \item{\code{fan_chart}}{Simulated path quantile fan (5\%, 25\%,
-#'     median, 75\%, 95\%).}
-#'   \item{\code{density}}{Histogram of terminal log-returns vs normal.}
-#'   \item{\code{acf_sq}}{ACF of squared log-returns with 95\% CI.}
-#' }
+#' Creates three diagnostic plots for a \linkS4class{JDSimResult} object:
+#' a simulated path fan chart, a histogram of log-returns with a normal
+#' density overlay, and the autocorrelation function of squared log-returns.
 #'
 #' @param object A \linkS4class{JDSimResult} object.
-#' @return Named list of three \code{ggplot} objects.
+#'
+#' @return A named list of three \code{ggplot} objects:
+#' \itemize{
+#'   \item \code{fan_chart}: simulated path quantile fan chart.
+#'   \item \code{density}: histogram of log-returns with a normal overlay.
+#'   \item \code{acf_sq}: autocorrelation of squared log-returns with 95\% bounds.
+#' }
 #'
 #' @examples
 #' m    <- MertonModel()
@@ -152,22 +158,13 @@ jdSampleData <- function(model   = "merton",
 #' print(plts$density)
 #' print(plts$acf_sq)
 #'
-#' @importFrom ggplot2 ggplot aes geom_line geom_ribbon geom_histogram
-#'   geom_density geom_col geom_hline labs theme_minimal after_stat
-#' @importFrom stats acf dnorm sd
-#' @importFrom utils globalVariables
+#' @importFrom stats acf dnorm sd quantile
 #' @export
 diagnosticPlots <- function(object) {
-
-  utils::globalVariables(c("t", "r", "lag", "acf",
-                           "q05", "q25", "median", "q75", "q95"))
-
   paths <- object@paths
   times <- object@times
-  n     <- nrow(paths)
 
-  # --- Fan chart ---------------------------------------------------
-  qs <- apply(paths, 2, quantile,
+  qs <- apply(paths, 2, stats::quantile,
               probs = c(0.05, 0.25, 0.50, 0.75, 0.95), na.rm = TRUE)
   df_fan <- data.frame(
     t      = times,
@@ -188,7 +185,6 @@ diagnosticPlots <- function(object) {
                   x = "Time (years)", y = "Asset price") +
     ggplot2::theme_minimal()
 
-  # --- Return density vs Normal ------------------------------------
   log_ret <- as.vector(diff(t(log(paths))))
   df_ret  <- data.frame(r = log_ret)
 
@@ -204,7 +200,6 @@ diagnosticPlots <- function(object) {
                   x = "Log-return", y = "Density") +
     ggplot2::theme_minimal()
 
-  # --- ACF of squared log-returns ----------------------------------
   acf_obj  <- acf(log_ret^2, lag.max = 30, plot = FALSE)
   ci_bound <- qnorm(0.975) / sqrt(length(log_ret))
   df_acf   <- data.frame(
