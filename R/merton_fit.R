@@ -1,3 +1,5 @@
+#' @include merton_model.R
+NULL
 # Internal: log-likelihood contribution for one observation
 # Not exported -- for use by mertonLogLik() only
 .merton_logdens <- function(r, dt, mu, sigma, lambda,

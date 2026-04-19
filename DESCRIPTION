@@ -23,12 +23,12 @@ Roxygen: list (markdown = TRUE)
 RoxygenNote: 7.3.3
 Collate:
     'generics.R'
-    'merton_model.R'
-    'kou_model.R'
-    'merton_sim.R'
-    'kou_sim.R'
-    'merton_fit.R'
     'kou_fit.R'
+    'kou_model.R'
+    'kou_sim.R'
+    'merton_model.R'
+    'merton_fit.R'
+    'merton_sim.R'
     'utils.R'
 Depends: R (>= 4.1.0)
 Imports:

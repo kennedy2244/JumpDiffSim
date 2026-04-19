@@ -1,3 +1,5 @@
+#' @include generics.R merton_model.R
+NULL
 #' Theoretical Moments of the Merton Jump-Diffusion Log-Return
 #'
 #' @description
