@@ -5,6 +5,21 @@
 #'   geom_density geom_col geom_hline labs theme_minimal after_stat
 NULL
 
+setGeneric("simulate",
+           function(object, n, T_, steps, seed = NULL, ...)
+             standardGeneric("simulate"))
+
+setGeneric("loglik",
+           function(object, log_returns, ...)
+             standardGeneric("loglik"))
+
+setGeneric("fit",
+           function(object, log_returns, ...)
+             standardGeneric("fit"))
+
+setGeneric("jumpMoments",
+           function(object) standardGeneric("jumpMoments"))
+
 # -- Generic: simulate ------------------------------------------
 #' Simulate Asset Price Paths
 #'
