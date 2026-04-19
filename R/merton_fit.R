@@ -30,9 +30,11 @@
 #'   invalid parameter values.
 #'
 #' @examples
+#' \dontrun{
 #' ret <- jdSampleData("merton", n = 200, seed = 42)
 #' p   <- c(mu = 0.05, sigma = 0.2, lambda = 1, mu_j = -0.1, sigma_j = 0.15)
 #' mertonLogLik(p, ret)
+#' }
 #'
 #' @export
 mertonLogLik <- function(params, log_returns, dt = 1/252, N_max = 50L) {
@@ -73,10 +75,12 @@ mertonLogLik <- function(params, log_returns, dt = 1/252, N_max = 50L) {
 #' @return A \linkS4class{JDFitResult} object.
 #'
 #' @examples
+#' \dontrun{
 #' ret <- jdSampleData("merton", n = 500, seed = 42)
 #' fit <- fitMerton(ret, verbose = TRUE)
 #' print(fit)
 #' confint(fit)
+#' }
 #'
 #' @importFrom stats optim
 #' @importFrom numDeriv hessian
