@@ -16,6 +16,6 @@ test_that("jumpMoments() with lambda=0 gives zero skewness and kurtosis", {
   m  <- MertonModel(mu = 0.05, sigma = 0.20, lambda = 0,
                     mu_j = 0, sigma_j = 0.1)
   jm <- jumpMoments(m)
-  expect_equal(jm["skewness"], 0, tolerance = 1e-10)
-  expect_equal(jm["kurtosis"], 0, tolerance = 1e-10)
+  expect_equal(unname(jm["skewness"]), 0, tolerance = 1e-10)
+  expect_equal(unname(jm["kurtosis"]), 0, tolerance = 1e-10)
 })
