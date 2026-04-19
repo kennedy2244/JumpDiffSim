@@ -1,20 +1,32 @@
 ---
-title: "JumpDiffSim-intro"
+title: "Getting Started with JumpDiffSim"
+author: "Kennedy Kayaki, Oh Dohyun, Ju Seong Nyeon, Lee Se Eun, Choi Jiwoo, Yuri Shin"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{JumpDiffSim-intro}
+  %\VignetteIndexEntry{Getting Started with JumpDiffSim}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+<<<<<<< HEAD
 
 ```{r, include = FALSE}
+=======
+```{r setup, include=FALSE}
+>>>>>>> dev
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment  = "#>",
+  echo     = TRUE,
+  message  = FALSE,
+  warning  = FALSE,
+  fig.width  = 6,
+  fig.height = 4
 )
 ```
 
+<<<<<<< HEAD
 
 
 ```{r simulate}
@@ -23,3 +35,126 @@ library(JumpDiffSim)
 
 ```
 
+=======
+## 1. Why Jump-Diffusion?
+
+Standard Geometric Brownian Motion (GBM) assumes that log-returns are
+normally distributed. Empirical equity and cryptocurrency returns, however,
+exhibit well-documented departures from normality:
+
+- **Leptokurtosis** (excess kurtosis > 0): more mass in the centre and tails
+  than a Normal distribution predicts.
+- **Negative skewness**: large negative moves are more common and more severe
+  than large positive moves.
+
+The **Merton (1976)** jump-diffusion model adds a compound Poisson process
+to GBM, allowing the price to jump discontinuously at random times:
+
+$$
+dS_t = S_t \left[ (\mu - \lambda \bar{\mu}_J)\,dt +
+       \sigma\,dW_t + dJ_t \right]
+$$
+
+where $J_t = \sum_{i=1}^{N(t)}(Y_i - 1)$, $N(t) \sim \text{Poisson}(\lambda t)$,
+and $\log Y_i \sim \mathcal{N}(\mu_J, \sigma_J^2)$.
+
+**JumpDiffSim** provides a clean, unified S4 interface for simulating paths
+and calibrating parameters under this model, with all examples running
+entirely offline.
+
+---
+
+## 2. Simulate Paths
+
+```{r simulate, fig.width=6, fig.height=4}
+library(JumpDiffSim)
+
+# Create a MertonModel S4 object with default parameters
+m <- MertonModel(
+  mu      =  0.05,   # drift
+  sigma   =  0.20,   # diffusion volatility
+  lambda  =  1,      # average jumps per year
+  mu_j    = -0.10,   # mean log-jump size
+  sigma_j =  0.15    # std dev of log-jumps
+)
+
+# Display the model
+show(m)
+
+# Simulate 200 paths over 1 year with 252 daily steps
+sim <- simulateMerton(m, n = 200, T_ = 1, steps = 252, seed = 42)
+
+# Diagnostic plots
+plts <- diagnosticPlots(sim)
+print(plts$fan_chart)
+print(plts$density)
+```
+
+The fan chart shows the 5th, 25th, 50th, 75th, and 95th percentile bands
+of the 200 simulated paths. The density plot overlays the empirical
+return histogram against a Normal curve, illustrating the heavy-tailed
+character of Merton returns.
+
+---
+
+## 3. Fit Model to Data
+
+```{r fit}
+# Generate reproducible synthetic log-returns
+# (all examples use jdSampleData() -- no internet required)
+ret <- jdSampleData("merton", n = 500, seed = 42)
+
+# Fit the Merton model via Maximum Likelihood Estimation
+fit <- fitMerton(ret, verbose = FALSE)
+
+# Parameter estimates and convergence
+print(fit)
+
+# 95% Wald confidence intervals
+confint(fit)
+```
+
+The `fitMerton()` function uses L-BFGS-B optimisation and computes
+Hessian-based standard errors via `numDeriv::hessian()`. The `converged`
+slot confirms whether the optimiser reached a solution.
+
+---
+
+## 4. Interpreting Parameters
+
+| Parameter | Meaning                             |
+|-----------|-------------------------------------|
+| mu        | Drift (expected continuous return)  |
+| sigma     | Diffusion volatility                |
+| lambda    | Average jumps per year              |
+| mu_j      | Average log-size of each jump       |
+| sigma_j   | Std deviation of jump sizes         |
+
+A **negative** `mu_j` combined with a positive `lambda` implies that jumps
+on average reduce the asset price — consistent with the crash-risk
+interpretation of Merton (1976).
+
+---
+
+## 5. Theoretical Moments
+
+```{r moments}
+# Theoretical mean, variance, skewness, and excess kurtosis
+# contributed by the jump component
+jumpMoments(m)
+```
+
+Excess kurtosis greater than zero confirms that the Merton model generates
+heavier tails than GBM, which is the key motivation for using a
+jump-diffusion specification.
+
+---
+
+## References
+
+- Merton, R.C. (1976). Option pricing when underlying stock returns are
+  discontinuous. *Journal of Financial Economics*, 3(1-2), 125-144.
+- Wickham, H. and Bryan, J. (2023). *R Packages* (2nd ed.). O'Reilly Media.
+  <https://r-pkgs.org/>
+
+>>>>>>> dev
