@@ -81,6 +81,7 @@ MertonModel <- function(mu      =  0.05,
 
 # -- show() method for MertonModel -----------------------------
 #' @rdname MertonModel-class
+#' @param object A \linkS4class{MertonModel} object.
 #' @export
 setMethod("show", "MertonModel", function(object) {
   cat("Merton Jump-Diffusion Model\n")
@@ -134,6 +135,7 @@ setClass("JDFitResult",
 
 # -- show() method for JDFitResult ----------------------------
 #' @rdname JDFitResult-class
+#' @param object A \linkS4class{JDFitResult} object.
 #' @export
 setMethod("show", "JDFitResult", function(object) {
   cat("Merton MLE Fit Result\n")
