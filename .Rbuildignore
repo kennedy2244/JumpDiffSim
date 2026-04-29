@@ -7,3 +7,5 @@
 ^\.github$
 ^scaffolds$
 ^git$
+^doc$
+^Meta$
