@@ -11,7 +11,8 @@ Authors@R: c(
     person (given = "Oh", family = "DoHyun", role = "aut"),
     person (given = "Ju Seong", family = "Nyeon", role = "aut"),
     person (given = "Lee", family = "Se Eun", role = "aut"),
-    person (given = "Choi", family = "Jiwoo", role = "aut")
+    person (given = "Choi", family = "Jiwoo", role = "aut"),
+    person (given = "Yuri", family = "Shin", role = "aut")
     )
 Description: Provides exact compound-Poisson simulation and maximum likelihood estimation for the Merton (1976) log-normal jump-diffusion model and the Kou (2002) double-exponential jump-diffusion model.
       A unified S4 class hierarchy exposes calibrate(), simulate(), and
