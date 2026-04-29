@@ -43,5 +43,5 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-URL: https://github.com/kennedy2244/JumpDiffSim
+URL: https://kennedy2244.github.io/JumpDiffSim, https://github.com/kennedy2244/JumpDiffSim
 BugReports: https://github.com/kennedy2244/JumpDiffSim/issues

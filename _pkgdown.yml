@@ -9,7 +9,8 @@ navbar:
     right: [github]
   components:
     github:
-      icon: fab fa-github
+      icon: fab fa-github fa-lg
+      aria-label: GitHub repository
       href: https://github.com/kennedy2244/JumpDiffSim
 
 reference:
@@ -46,4 +47,4 @@ reference:
   - title: "Methods"
     desc: "S4 method implementations"
     contents:
-      - jumpMoments-MertonModel-method
+      - jumpMoments,MertonModel-method
