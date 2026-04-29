@@ -4,4 +4,6 @@
 .Ruserdata
 inst/doc
 renv/library/
+/doc/
+/Meta/
 .positai

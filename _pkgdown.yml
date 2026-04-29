@@ -1,0 +1,30 @@
+url: https://kennedy2244.github.io/JumpDiffSim
+
+template:
+  bootstrap: 5
+
+navbar:
+  structure:
+    left: [intro, reference, articles]
+    right: [github]
+  components:
+    github:
+      icon: fab fa-github
+      href: https://github.com/kennedy2244/JumpDiffSim
+
+reference:
+  - title: "Model Construction"
+    contents:
+      - MertonModel
+  - title: "Simulation"
+    contents:
+      - simulateMerton
+      - jdSampleData
+      - diagnosticPlots
+  - title: "Estimation"
+    contents:
+      - mertonLogLik
+      - fitMerton
+  - title: "Utilities"
+    contents:
+      - jumpMoments
