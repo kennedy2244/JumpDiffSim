@@ -9,6 +9,7 @@ test_that("MertonModel() returns correct S4 class", {
   expect_true(is(m, "JumpDiffModel"))   # must inherit virtual base
   expect_equal(m@sigma,  0.20)
   expect_equal(m@lambda, 1)
+
 })
 
 # T2 -- sigma guard: reject zero and negative diffusion volatility
@@ -42,3 +43,13 @@ test_that("MertonModel() rejects sigma_j <= 0", {
     regexp = "sigma_j"
   )
 })
+
+# T-SHOW -- show() methods run without error
+test_that("show() methods run without error", {
+  m   <- MertonModel()
+  sim <- simulateMerton(m, n = 10, T_ = 1, steps = 20, seed = 1)
+  fit <- fitMerton(jdSampleData(n = 100, seed = 1))
+  expect_output(show(m),   "Merton Jump-Diffusion Model")
+  expect_output(show(fit), "Merton MLE Fit Result")
+})
+
