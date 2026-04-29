@@ -7,3 +7,5 @@
 ^\.github$
 ^scaffolds$
 ^git$
+^\.positai$
+^\.claude$
