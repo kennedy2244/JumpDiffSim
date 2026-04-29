@@ -22,7 +22,6 @@ jobs:
           needs: website
       - name: Build site
         run: |
-          devtools::install()
           pkgdown::build_site_github_pages(new_process = FALSE)
         shell: Rscript {0}
       - name: Deploy to GitHub pages
