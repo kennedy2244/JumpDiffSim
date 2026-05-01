@@ -1,0 +1,26 @@
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/JumpDiffSim-intro.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/diagnosticPlots.html</loc></url>
+<url><loc>/reference/fit.html</loc></url>
+<url><loc>/reference/fitMerton.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/JDFitResult-class.html</loc></url>
+<url><loc>/reference/jdSampleData.html</loc></url>
+<url><loc>/reference/JDSimResult-class.html</loc></url>
+<url><loc>/reference/JumpDiffModel-class.html</loc></url>
+<url><loc>/reference/jumpMoments-MertonModel-method.html</loc></url>
+<url><loc>/reference/jumpMoments.html</loc></url>
+<url><loc>/reference/loglik.html</loc></url>
+<url><loc>/reference/mertonLogLik.html</loc></url>
+<url><loc>/reference/MertonModel-class.html</loc></url>
+<url><loc>/reference/MertonModel.html</loc></url>
+<url><loc>/reference/simulate.html</loc></url>
+<url><loc>/reference/simulateMerton.html</loc></url>
+</urlset>
+
