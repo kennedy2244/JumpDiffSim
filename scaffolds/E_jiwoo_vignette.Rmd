@@ -1,6 +1,6 @@
 ---
 title: "Getting Started with JumpDiffSim"
-author: "Kennedy Kayaki, Oh Dohyun, Ju Seong Nyeon, Lee Se Eun, Choi Jiwoo"
+author: "Kennedy Kayaki, Oh Dohyun, Ju Seong Nyeon, Lee Se Eun, Choi Jiwoo, Yuri Shin"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
