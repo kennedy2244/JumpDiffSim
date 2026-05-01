@@ -7,3 +7,5 @@ renv/library/
 /doc/
 /Meta/
 .positai
+renv/
+renv.lock

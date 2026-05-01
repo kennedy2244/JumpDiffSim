@@ -11,7 +11,8 @@ Authors@R: c(
     person (given = "Oh", family = "DoHyun", role = "aut"),
     person (given = "Ju Seong", family = "Nyeon", role = "aut"),
     person (given = "Lee", family = "Se Eun", role = "aut"),
-    person (given = "Choi", family = "Jiwoo", role = "aut")
+    person (given = "Choi", family = "Jiwoo", role = "aut"),
+    person (given = "Yuri", family = "Shin", role = "aut")
     )
 Description: Provides exact compound-Poisson simulation and maximum likelihood estimation for the Merton (1976) log-normal jump-diffusion model and the Kou (2002) double-exponential jump-diffusion model.
       A unified S4 class hierarchy exposes calibrate(), simulate(), and
@@ -38,10 +39,11 @@ Imports:
     numDeriv (>= 2016.8.1.1)
 Suggests:
     knitr,
+    pkgdown,
     rmarkdown,
     covr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-URL: https://github.com/kennedy2244/JumpDiffSim
+URL: https://kennedy2244.github.io/JumpDiffSim, https://github.com/kennedy2244/JumpDiffSim
 BugReports: https://github.com/kennedy2244/JumpDiffSim/issues

@@ -9,22 +9,42 @@ navbar:
     right: [github]
   components:
     github:
-      icon: fab fa-github
+      icon: fab fa-github fa-lg
+      aria-label: GitHub repository
       href: https://github.com/kennedy2244/JumpDiffSim
 
 reference:
-  - title: "Model Construction"
+  - title: "Model Classes"
+    desc: "S4 class definitions for jump-diffusion models"
     contents:
       - MertonModel
+      - MertonModel-class
+      - JumpDiffModel-class
+      - JDSimResult-class
+      - JDFitResult-class
+
+  - title: "Generic Functions"
+    desc: "S4 generic function definitions"
+    contents:
+      - simulate
+      - fit
+      - loglik
+      - jumpMoments
+
   - title: "Simulation"
+    desc: "Simulate asset price paths"
     contents:
       - simulateMerton
       - jdSampleData
       - diagnosticPlots
+
   - title: "Estimation"
+    desc: "Fit models via maximum likelihood"
     contents:
       - mertonLogLik
       - fitMerton
-  - title: "Utilities"
+
+  - title: "Methods"
+    desc: "S4 method implementations"
     contents:
-      - jumpMoments
+      - jumpMoments,MertonModel-method
