@@ -23,13 +23,13 @@ Install the development version from GitHub:
 
 ```r
 # install.packages("devtools")
-devtools::install_github("kennedy2244/JumpDiffSim")
+devtools::install_github("kennedy2244/JumpDiffTrial")
 ```
 
 Install a specific release version:
 
 ```r
-devtools::install_github("kennedy2244/JumpDiffSim@v0.1.0")
+devtools::install_github("kennedy2244/JumpDiffTrial@v0.1.0")
 ```
 
 ---
