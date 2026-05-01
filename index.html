@@ -61,10 +61,10 @@
 <p>Install the development version from GitHub:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"kennedy2244/JumpDiffTrial"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"kennedy2244/JumpDiffSim"</span><span class="op">)</span></span></code></pre></div>
 <p>Install a specific release version:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"kennedy2244/JumpDiffTrial@v0.1.0"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"kennedy2244/JumpDiffSim@v0.1.0"</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level2">
@@ -134,33 +134,33 @@
 <col width="25%">
 <col width="40%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>Parameter</th>
 <th>Symbol</th>
 <th>Description</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>mu</code></td>
 <td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math></td>
 <td>Drift — expected continuous return per unit time</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>sigma</code></td>
 <td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>σ</mi><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></td>
 <td>Diffusion volatility of the Brownian component</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>lambda</code></td>
 <td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>λ</mi><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></td>
 <td>Jump intensity — average number of jumps per year</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>mu_j</code></td>
 <td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><mi>J</mi></msub><annotation encoding="application/x-tex">\mu_J</annotation></semantics></math></td>
 <td>Mean log-size of each jump</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>sigma_j</code></td>
 <td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>σ</mi><mi>J</mi></msub><annotation encoding="application/x-tex">\sigma_J</annotation></semantics></math></td>
 <td>Standard deviation of log-jump sizes</td>
@@ -202,32 +202,32 @@
 <h2 id="test-coverage">Test Coverage<a class="anchor" aria-label="anchor" href="#test-coverage"></a>
 </h2>
 <table class="table">
-<thead><tr class="header">
+<thead><tr>
 <th>File</th>
 <th>Coverage</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>R/utils.R</code></td>
 <td>100.00%</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>R/merton_sim.R</code></td>
 <td>98.86%</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>R/merton_fit.R</code></td>
 <td>96.72%</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>R/generics.R</code></td>
 <td>14.29%</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>R/merton_model.R</code></td>
 <td>20.83%</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>Overall</strong></td>
 <td><strong>85.57%</strong></td>
 </tr>
@@ -265,23 +265,23 @@
 <col width="29%">
 <col width="37%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>Version</th>
 <th>Status</th>
 <th>Features</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>v0.1.0</td>
 <td>Released</td>
 <td>Merton model — simulation, estimation, diagnostics, tests</td>
 </tr>
-<tr class="even">
+<tr>
 <td>v0.2.0</td>
 <td>Planned</td>
 <td>Kou (2002) model — double-exponential jumps</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>v0.3.0</td>
 <td>Planned</td>
 <td>Cross-model comparison vignette, CRAN submission</td>
@@ -295,32 +295,32 @@
 </h2>
 <p>This package was developed collaboratively by students in the Department of Statistics, Yeungnam University, under the supervision of <strong>Professor Lee Kyungsub</strong>.</p>
 <table class="table">
-<thead><tr class="header">
+<thead><tr>
 <th>Member</th>
 <th>Role</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Kennedy Kayaki</td>
 <td>Package Lead · Estimation Module</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Oh Dohyun</td>
 <td>S4 Architect</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Ju Seong Nyeon</td>
 <td>Simulation Engine</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Lee Se Eun</td>
 <td>Unit Testing (T1–T9)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Yuri Shin</td>
 <td>Coverage Reporting (T10–T12)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Choi Jiwoo</td>
 <td>Vignette &amp; README</td>
 </tr>

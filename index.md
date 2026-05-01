@@ -16,14 +16,16 @@ live market data.
 Install the development version from GitHub:
 
 ``` r
+
 # install.packages("devtools")
-devtools::install_github("kennedy2244/JumpDiffTrial")
+devtools::install_github("kennedy2244/JumpDiffSim")
 ```
 
 Install a specific release version:
 
 ``` r
-devtools::install_github("kennedy2244/JumpDiffTrial@v0.1.0")
+
+devtools::install_github("kennedy2244/JumpDiffSim@v0.1.0")
 ```
 
 ------------------------------------------------------------------------
@@ -34,6 +36,7 @@ The core workflow is three steps: **create a model → simulate paths →
 fit to data.**
 
 ``` r
+
 library(JumpDiffSim)
 
 # ── Step 1: Create a Merton model object ─────────────────────
@@ -93,11 +96,11 @@ confint(fit)
 
 | Parameter | Symbol       | Description                                       |
 |-----------|--------------|---------------------------------------------------|
-| `mu`      | $\mu$        | Drift — expected continuous return per unit time  |
-| `sigma`   | $\sigma$     | Diffusion volatility of the Brownian component    |
-| `lambda`  | $\lambda$    | Jump intensity — average number of jumps per year |
-| `mu_j`    | $\mu_{J}$    | Mean log-size of each jump                        |
-| `sigma_j` | $\sigma_{J}$ | Standard deviation of log-jump sizes              |
+| `mu`      | $`\mu`$      | Drift — expected continuous return per unit time  |
+| `sigma`   | $`\sigma`$   | Diffusion volatility of the Brownian component    |
+| `lambda`  | $`\lambda`$  | Jump intensity — average number of jumps per year |
+| `mu_j`    | $`\mu_J`$    | Mean log-size of each jump                        |
+| `sigma_j` | $`\sigma_J`$ | Standard deviation of log-jump sizes              |
 
 A **negative** `mu_j` with a positive `lambda` implies that jumps on
 average reduce the asset price — consistent with the crash-risk
@@ -108,6 +111,7 @@ interpretation in Merton (1976).
 ## Theoretical Moments
 
 ``` r
+
 jumpMoments(m)
 #>       mean   variance   skewness   kurtosis
 #>   0.000489   0.046225  -0.003012   0.000451
@@ -156,6 +160,7 @@ R CMD check result: **0 errors \| 0 warnings \| 0 notes**
 A full introduction to the package is available in the vignette:
 
 ``` r
+
 # After installation
 vignette("JumpDiffSim-intro", package = "JumpDiffSim")
 ```

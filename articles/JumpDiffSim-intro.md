@@ -15,11 +15,14 @@ The **Merton (1976)** jump-diffusion model adds a compound Poisson
 process to GBM, allowing the price to jump discontinuously at random
 times:
 
-$$dS_{t} = S_{t}\left\lbrack \left( \mu - \lambda{\bar{\mu}}_{J} \right)\, dt + \sigma\, dW_{t} + dJ_{t} \right\rbrack$$
+``` math
+dS_t = S_t \left[ (\mu - \lambda \bar{\mu}_J)\,dt +
+       \sigma\,dW_t + dJ_t \right]
+```
 
-where $J_{t} = \sum_{i = 1}^{N{(t)}}\left( Y_{i} - 1 \right)$,
-$N(t) \sim \text{Poisson}(\lambda t)$, and
-$\log Y_{i} \sim \mathcal{N}\left( \mu_{J},\sigma_{J}^{2} \right)$.
+where $`J_t = \sum_{i=1}^{N(t)}(Y_i - 1)`$,
+$`N(t) \sim \text{Poisson}(\lambda t)`$, and
+$`\log Y_i \sim \mathcal{N}(\mu_J, \sigma_J^2)`$.
 
 **JumpDiffSim** provides a clean, unified S4 interface for simulating
 paths and calibrating parameters under this model, with all examples
@@ -30,6 +33,7 @@ running entirely offline.
 ## 2. Simulate Paths
 
 ``` r
+
 library(JumpDiffSim)
 
 # Create a MertonModel S4 object with default parameters
@@ -63,6 +67,7 @@ print(plts$fan_chart)
 ![](JumpDiffSim-intro_files/figure-html/simulate-1.png)
 
 ``` r
+
 print(plts$density)
 ```
 
@@ -78,6 +83,7 @@ character of Merton returns.
 ## 3. Fit Model to Data
 
 ``` r
+
 # Generate reproducible synthetic log-returns
 # (all examples use jdSampleData() -- no internet required)
 ret <- jdSampleData("merton", n = 500, seed = 42)
@@ -136,6 +142,7 @@ interpretation of Merton (1976).
 ## 5. Theoretical Moments
 
 ``` r
+
 # Theoretical mean, variance, skewness, and excess kurtosis
 # contributed by the jump component
 jumpMoments(m)
