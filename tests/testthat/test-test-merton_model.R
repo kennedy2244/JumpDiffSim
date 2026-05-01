@@ -9,7 +9,6 @@ test_that("MertonModel() returns correct S4 class", {
   expect_true(is(m, "JumpDiffModel"))   # must inherit virtual base
   expect_equal(m@sigma,  0.20)
   expect_equal(m@lambda, 1)
-
 })
 
 # T2 -- sigma guard: reject zero and negative diffusion volatility
