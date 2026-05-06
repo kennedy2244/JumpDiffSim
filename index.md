@@ -197,9 +197,9 @@ Lee Kyungsub**.
 | Member         | Role                             |
 |----------------|----------------------------------|
 | Kennedy Kayaki | Package Lead · Estimation Module |
-| Oh Dohyun      | S4 Architect                     |
-| Ju Seong Nyeon | Simulation Engine                |
-| Lee Se Eun     | Unit Testing (T1–T9)             |
+| Dohyun Oh      | S4 Architect                     |
+| Ju Seong Hyeon | Simulation Engine                |
+| Lee Seeun      | Unit Testing (T1–T9)             |
 | Yuri Shin      | Coverage Reporting (T10–T12)     |
 | Choi Jiwoo     | Vignette & README                |
 
