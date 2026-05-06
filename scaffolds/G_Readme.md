@@ -39,8 +39,8 @@ They exist to avoid copy-paste errors from the PDF tutorial.
 | File | Member | Role | Copy content into |
 |------|--------|------|-------------------|
 | `A_kennedy_estimation.R` | Kennedy Kayaki | Package Lead + Estimation | `R/merton_fit.R` and `R/utils.R` |
-| `B_dohyun_s4_classes.R` | Oh Dohyun | S4 Architect | `R/generics.R` and `R/merton_model.R` |
-| `C_juseong_simulation.R` | Ju Seong Nyeon | Simulation Engine | `R/merton_sim.R` |
+| `B_dohyun_s4_classes.R` | Dohyun Oh | S4 Architect | `R/generics.R` and `R/merton_model.R` |
+| `C_juseong_simulation.R` | Ju Seong Hyeon | Simulation Engine | `R/merton_sim.R` |
 | `D_seeun_tests.R` | Lee Se Eun | Unit Testing (T1-T9) | `tests/testthat/test-merton_model.R` and `tests/testthat/test-merton_fit.R` |
 | `E_jiwoo_vignette.Rmd` | Choi Jiwoo | Vignette and README | `vignettes/JumpDiffSim-intro.Rmd` |
 | `F_yuri_coverage.R` | Yuri Shin | Simulation Tests + Coverage (T10-T12) | `tests/testthat/test-merton_sim.R` and `tests/testthat/test-utils.R` |

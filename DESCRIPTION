@@ -8,8 +8,8 @@ Authors@R: c(
       family = "Kayaki",
       email = "kennedy_2244@yu.ac.kr",
       role = c("aut", "cre")),
-    person (given = "Oh", family = "DoHyun", role = "aut"),
-    person (given = "Ju Seong", family = "Nyeon", role = "aut"),
+    person (given = "Dohyun", family = "Oh", role = "aut"),
+    person (given = "Ju Seong", family = "Hyeon", role = "aut"),
     person (given = "Lee", family = "Se Eun", role = "aut"),
     person (given = "Choi", family = "Jiwoo", role = "aut"),
     person (given = "Yuri", family = "Shin", role = "aut")
