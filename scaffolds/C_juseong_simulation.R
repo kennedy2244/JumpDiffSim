@@ -1,6 +1,6 @@
 # ============================================================
 # JumpDiffTrial -- Student Scaffold
-# Member  : Ju Seong Nyeon (C)
+# Member  : Ju Seong Hyeon (C)
 # Role    : Simulation Engine
 # Files   : R/merton_sim.R
 # Branch  : feature/juseong-simulation

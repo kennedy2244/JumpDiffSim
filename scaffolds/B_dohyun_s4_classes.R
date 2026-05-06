@@ -1,6 +1,6 @@
 # ============================================================
 # JumpDiffTrial -- Student Scaffold
-# Member  : Oh Dohyun (B)
+# Member  : Dohyun Oh (B)
 # Role    : S4 Architect
 # Files   : R/generics.R  |  R/merton_model.R
 # Branch  : feature/dohyun-s4-classes
