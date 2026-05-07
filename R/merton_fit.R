@@ -117,7 +117,7 @@ fitMerton <- function(log_returns,
     error = function(e) matrix(NA, 5, 5)
   )
   se <- tryCatch(
-    sqrt(diag(solve(H + 1e-6 * diag(nrow(H))))),
+    sqrt(diag(solve(H + 1e-4 * diag(nrow(H))))),
     error = function(e) rep(NA_real_, 5)
   )
   names(se) <- names(opt$par)
