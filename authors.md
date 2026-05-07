@@ -17,7 +17,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/kennedy2244/JumpDiffSim/blob/v0.1.3/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/kennedy2244/JumpDiffSim/blob/main/DESCRIPTION)
 
 Kayaki KT, Oh D, Hyeon J, Se Eun L, Jiwoo C, Shin Y (2026).
 *JumpDiffSim: Jump Diffusion Simulation and Calibration for Merton and
