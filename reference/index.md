@@ -49,6 +49,13 @@ Fit models via maximum likelihood
 - [`fitMerton()`](https://kennedy2244.github.io/JumpDiffSim/reference/fitMerton.md)
   : Fit Merton Jump-Diffusion Model via MLE
 
+## Option Pricing
+
+European option pricing under jump-diffusion models
+
+- [`priceEuropean()`](https://kennedy2244.github.io/JumpDiffSim/reference/priceEuropean.md)
+  : Price a European Option under the Merton Jump-Diffusion Model
+
 ## Methods
 
 S4 method implementations
