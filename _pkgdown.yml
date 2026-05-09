@@ -44,6 +44,11 @@ reference:
       - mertonLogLik
       - fitMerton
 
+  - title: "Option Pricing"
+    desc: "European option pricing under jump-diffusion models"
+    contents:
+      - priceEuropean
+
   - title: "Methods"
     desc: "S4 method implementations"
     contents:
